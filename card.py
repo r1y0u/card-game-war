@@ -36,9 +36,3 @@ class Card:
         r = self.values[self.value] + " of " \
             + self.suits[self.suit]
         return r
-
-
-
-
-
-
