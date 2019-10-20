@@ -44,8 +44,8 @@ class Deck:
     def __init__(self):
         self.cards = []
         for i in range(2, 15):
-            for j in range(0, 4):
-                self.cards.append(i, j)
+            for j in range(4):
+                self.cards.append(Card(i, j))
         shuffle(self.cards)
 
     def rm_card(self):
@@ -57,7 +57,7 @@ class Player:
     def __init__(self, name):
         self.wins = 0
         self.card = None
-        self.Name = name
+        self.name = name
 
 class Game:
     def __init__(self):
@@ -68,12 +68,12 @@ class Game:
         self.p2 = Player(player2)
 
     def wins(self, winner):
-        w = "今回のこのゲームは{}が勝ちました!"
+        w = "今回のこのゲームは {} が勝ちました!"
         w = w.format(winner)
         print(w)
 
     def draw(self, p1n, p1c, p2n, p2c):
-        d = "{} は｛｝を引き、{} は {}を引きました。"
+        d = "{} は {} を引き、{} は {}を引きました。"
         d = d.format(p1n, p1c, p2n, p2c)
         print(d)
 
@@ -82,9 +82,9 @@ class Game:
         print("それではゲームを始めます。")
         while len(cards) >= 2:
             msg = "ゲームを終了したい場合は [q] を押します。" \
-                  "それ以外でゲーム続行です。"
-            res = input(msg)
-            if res == q:
+                  "それ以外でゲーム続行です。\n"
+            answer = input(msg)
+            if answer == 'q':
                 break
 
             p1c = self.deck.rm_card()
