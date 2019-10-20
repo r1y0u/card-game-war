@@ -10,8 +10,8 @@ class Card:
               "Jack", "Queen", "King", "Ace"]
 
     def __init__(self, v, s):
-        self.suit = s
         self.value = v
+        self.suit = s
 
     # The case, c2 is greater.
     def __lt__(self, c2):
@@ -59,4 +59,47 @@ class Player:
         self.card = None
         self.Name = name
 
+class Game:
+    def __init__(self):
+        player1 = input("プレイヤー１の名前： ")
+        player2 = input("プレイヤー２の名前： ")
+        self.deck = Deck()
+        self.p1 = Player(player1)
+        self.p2 = Player(player2)
+
+    def wins(self, winner):
+        w = "今回のこのゲームは{}が勝ちました!"
+        w = w.format(winner)
+        print(w)
+
+    def draw(self, p1n, p1c, p2n, p2c):
+        d = "{} は｛｝を引き、{} は {}を引きました。"
+        d = d.format(p1n, p1c, p2n, p2c)
+        print(d)
+
+    def play_game(self):
+        cards = self.deck.cards
+        print("それではゲームを始めます。")
+        while len(cards) >= 2:
+            msg = "ゲームを終了したい場合は [q] を押します。" \
+                  "それ以外でゲーム続行です。"
+            res = input(msg)
+            if res == q:
+                break
+
+            p1c = self.deck.rm_card()
+            p2c = self.deck.rm_card()
+            p1n = self.p1.name
+            p2n = self.p2.name
+            self.draw(p1n, p1c, p2n, p2c)
+
+            if p1c > p2c:
+                self.p1.wins += 1
+                self.wins(self.p1.name)
+            else:
+                self.p2.wins += 1
+                self.wins(self.p2.name)
+
+        win = self.winner(self.p1, self.p2)
+        print("ゲーム終了！このゲームは {} の勝利です！".format(win))
 

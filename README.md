@@ -6,4 +6,4 @@ This game is played by two people and each player turns up a card from the deck 
 Then, the one who has a higher card takes both the cards and puts them back of the bottom of the stack.
 During the game, if the cards are the same rank, --------------
 
-The game ends when one of the player takes all the cards. 
+The game ends when one of the players takes all the cards from the other.
